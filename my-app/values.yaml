@@ -1,0 +1,26 @@
+# Default values for my-app
+
+replicaCount: 2
+
+image:
+  repository: nginxdemos/hello
+  pullPolicy: IfNotPresent
+  tag: ""
+
+service:
+  type: LoadBalancer
+  port: 80
+
+ingress:
+  enabled: true
+  className: nginx
+  hosts:
+    - host: hello.intern.local
+      paths:
+        - path: /
+          pathType: Prefix
+
+resources: {}
+
+autoscaling:
+  enabled: false
